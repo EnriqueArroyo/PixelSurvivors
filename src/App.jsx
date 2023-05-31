@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="container">
       <Personaje />
-      <p>hola</p>
     </div>
   );
 }
