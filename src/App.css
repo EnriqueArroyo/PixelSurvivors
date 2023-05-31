@@ -1,0 +1,58 @@
+.container {
+  display: flexbox;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  color: black;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.row1 {
+  height: 65%;
+}
+
+.row2 {
+  height: 35%;
+}
+
+.eAcciones {
+  flex-basis: 20%;
+  background-color: lightblue;
+  border: 1px black solid;
+}
+
+.mapa {
+  flex-basis: 60%;
+  flex-grow: 1;
+  background-color: lightgreen;
+  border: 1px black solid;
+}
+
+.eItems {
+  flex-basis: 20%;
+  background-color: lightpink;
+  border: 1px black solid;
+}
+
+.estados {
+  flex-basis: 30%;
+  background-color: lightyellow;
+  border: 1px black solid;
+}
+
+.equipo {
+  flex-basis: 40%;
+  background-color: lightsalmon;
+  border: 1px black solid;
+}
+
+.eventos {
+  flex-basis: 30%;
+  background-color: lightgray;
+  border: 1px black solid;
+}
