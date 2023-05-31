@@ -1,5 +1,6 @@
 import React from 'react'
 import Personaje from '../../components/Personaje/Personaje';
+import "./MapaUX.css"
 
 const MapaUX = (props) => {
   const { x = 0, y = 0 } = props.ubicacion || {};

@@ -40,7 +40,7 @@ const Personaje = ({ lugar }) => {
   });
 
   // funciones
-  //Salud
+  //Salud ❤️
   const recibirDano = (cantidad) => {
     setSalud((prevSalud) => {
       const nuevaSalud = prevSalud - cantidad;
@@ -55,7 +55,60 @@ const Personaje = ({ lugar }) => {
     });
   };
 
-  //Posición:
+   // Hambre 🍗
+   const aumentarHambre = (cantidad) => {
+    setHambre((prevHambre) => prevHambre + cantidad);
+  };
+
+  const reducirHambre = (cantidad) => {
+    setHambre((prevHambre) => Math.max(0, prevHambre - cantidad));
+  };
+
+  // Sed 💧
+  const aumentarSed = (cantidad) => {
+    setSed((prevSed) => prevSed + cantidad);
+  };
+
+  const reducirSed = (cantidad) => {
+    setSed((prevSed) => Math.max(0, prevSed - cantidad));
+  };
+
+  // Temperatura ❄️🔥
+  const aumentarTemperatura = (cantidad) => {
+    setTemperatura((prevTemperatura) => prevTemperatura + cantidad);
+  };
+
+  const reducirTemperatura = (cantidad) => {
+    setTemperatura((prevTemperatura) => Math.max(0, prevTemperatura - cantidad));
+  };
+
+  // Defensas 🛡️
+  const aumentarDefensaFisica = (cantidad) => {
+    setDefensaFisica((prevDefensa) => prevDefensa + cantidad);
+  };
+
+  const aumentarDefensaMagica = (cantidad) => {
+    setDefensaMagica((prevDefensa) => prevDefensa + cantidad);
+  };
+
+  const aumentarDefensaTermica = (cantidad) => {
+    setDefensaTermica((prevDefensa) => prevDefensa + cantidad);
+  };
+
+  // Fuerza, Inteligencia, Sabiduría 💪🏻🧠🧾
+  const aumentarFuerza = (cantidad) => {
+    setFuerza((prevFuerza) => prevFuerza + cantidad);
+  };
+
+  const aumentarInteligencia = (cantidad) => {
+    setInteligencia((prevInteligencia) => prevInteligencia + cantidad);
+  };
+
+  const aumentarSabiduria = (cantidad) => {
+    setSabiduria((prevSabiduria) => prevSabiduria + cantidad);
+  };
+
+  //Posición 🗺️
   const handleKeyPress = (event) => {
     const { key } = event;
     const movimiento = 1; // Valor para ajustar la distancia del movimiento
