@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MapaUX from "../../design/Mapa/MapaUX";
-import EstadosUX from "../../design/Estados/EstadosUX";
+//import EstadosUX from "../../design/Estados/EstadosUX";
 import EquipoUX from "../../design/Equipo/EquipoUX";
 import EntornoAccionesUX from "../../design/EntornoAcciones/EntornoAccionesUX";
 import EntornoItemsUX from "../../design/EntornoItems/EntornoItemsUX";
 import EventosUX from "../../design/Eventos/EventosUX";
 
-const Personaje = () => {
+const Personaje = ({ lugar }) => {
   const [salud, setSalud] = useState(100);
   const [hambre, setHambre] = useState(0);
   const [sed, setSed] = useState(0);
@@ -39,27 +39,128 @@ const Personaje = () => {
     pies: "Nada",
   });
 
-  // Aquí puedes añadir tus funciones de manejo para cada acción que el personaje puede realizar.
+  // funciones
+  //Salud
+  const recibirDano = (cantidad) => {
+    setSalud((prevSalud) => {
+      const nuevaSalud = prevSalud - cantidad;
+      return Math.max(0, nuevaSalud);
+    });
+  };
 
-  return (
-    <div className="container">
-      <div className="row row1">
-        <EntornoAccionesUX />
-        <MapaUX ubicacion={ubicacion} />
-        <EntornoItemsUX />
-      </div>
-      <div className="row row2">
-        <EstadosUX
-          salud={salud}
-          hambre={hambre}
-          sed={sed}
-          temperatura={temperatura}
-        />
-        <EquipoUX equipo={equipo} ropaArmadura={ropaArmadura} />
-        <EventosUX />
-      </div>
-    </div>
-  );
+  const recibirSalud = (cantidad) => {
+    setSalud((prevSalud) => {
+      const nuevaSalud = prevSalud + cantidad;
+      return Math.min(100, nuevaSalud);
+    });
+  };
+
+  //Posición:
+  const handleKeyPress = (event) => {
+    const { key } = event;
+    const movimiento = 1; // Valor para ajustar la distancia del movimiento
+
+    // Actualizar la ubicación según la tecla presionada
+    switch (key) {
+      case "w":
+        setUbicacion((prevUbicacion) => ({
+          ...prevUbicacion,
+          y: prevUbicacion.y - movimiento,
+        }));
+        break;
+      case "a":
+        setUbicacion((prevUbicacion) => ({
+          ...prevUbicacion,
+          x: prevUbicacion.x - movimiento,
+        }));
+        break;
+      case "s":
+        setUbicacion((prevUbicacion) => ({
+          ...prevUbicacion,
+          y: prevUbicacion.y + movimiento,
+        }));
+        break;
+      case "d":
+        setUbicacion((prevUbicacion) => ({
+          ...prevUbicacion,
+          x: prevUbicacion.x + movimiento,
+        }));
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    // Agregar el evento de teclado al componente
+    window.addEventListener("keydown", handleKeyPress);
+
+    // Eliminar el evento de teclado al desmontar el componente
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
+  // fin funciones
+  //return
+  switch (lugar) {
+    case "Salud":
+      return (
+        <div>
+          <div>
+            <p>{salud}❤️</p>
+            <button onClick={() => recibirDano(10)}>Fajar 🗡️</button>
+            <button onClick={() => recibirSalud(10)}>Potear 💊</button>
+          </div>
+        </div>
+      );
+    case "Ubicacion":
+      return (
+        <div>
+          {
+            <p>
+              Ubicación: {ubicacion.x}, {ubicacion.y}
+            </p>
+          }
+        </div>
+      );
+    case "lugar3":
+      return (
+        <div>
+          <p>Lugar 3</p>
+          {/* Contenido específico para el lugar 3 */}
+        </div>
+      );
+    // Añadir los demás casos para los demás lugares
+    case "lugar4":
+      return (
+        <div>
+          <p>Lugar 4</p>
+          {/* Contenido específico para el lugar 4 */}
+        </div>
+      );
+    case "lugar5":
+      return (
+        <div>
+          <p>Lugar 5</p>
+          {/* Contenido específico para el lugar 5 */}
+        </div>
+      );
+    case "lugar6":
+      return (
+        <div>
+          <p>Lugar 6</p>
+          {/* Contenido específico para el lugar 6 */}
+        </div>
+      );
+    default:
+      return (
+        <div>
+          <p>Lugar desconocido</p>
+          {/* Contenido predeterminado en caso de lugar desconocido */}
+        </div>
+      );
+  }
 };
 
 export default Personaje;
